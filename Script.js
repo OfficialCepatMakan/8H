@@ -9,7 +9,7 @@
   function logsales(method, name, quantity, price) {
     const logId = Date.now(); // Unique ID (timestamp)
 
-    database.ref('sales_logs/' + logId).set({
+    database.ref('8H/sales_logs/' + logId).set({
       paymentMethod: method,
       productName: name,
       quantity: quantity,
@@ -47,7 +47,7 @@
 
     // Save to Firebase
     const productId = Date.now(); // unique ID
-    firebase.database().ref('products/' + productId).set({
+    firebase.database().ref('8H/products/' + productId).set({
       name: name,
       price: parseFloat(price)
     }).then(() => {
@@ -70,7 +70,7 @@
 
   // Load cashier notes
   async function loadProductsFromFirebase() {
-    const snapshot = await firebase.database().ref('products').once('value');
+    const snapshot = await firebase.database().ref('8H/products').once('value');
     const data = snapshot.val();
     
     products = [];
@@ -92,7 +92,7 @@
     cont.innerHTML = ''; // Clear previous products
 
     try {
-      const snapshot = await firebase.database().ref('products').once('value');
+      const snapshot = await firebase.database().ref('8H/products').once('value');
       const productsData = snapshot.val();
 
       if (productsData) {
@@ -130,7 +130,7 @@
     adminProducts.innerHTML = ''; // Clear current products in admin panel
 
     // Fetch the products from Firebase
-    const productsRef = database.ref('products');
+    const productsRef = database.ref('8H/products');
     productsRef.once('value')
       .then(snapshot => {
         if (snapshot.exists()) {
@@ -161,7 +161,7 @@
   function deleteProduct(productId) {
     if (confirm('Are you sure you want to delete this product?')) {
       // Delete the product from Firebase
-      const productRef = database.ref('products/' + productId);
+      const productRef = database.ref('8H/products/' + productId);
       productRef.remove()
         .then(() => {
           console.log('Product deleted successfully');
@@ -176,7 +176,7 @@
 
   function saveNotes() {
     const notes = document.getElementById('cashierNotes').value;
-    database.ref('cashierNotes').set(notes)
+    database.ref('8H/cashierNotes').set(notes)
       .then(() => {
         alert('Notes saved to Firebase!');
       })
@@ -187,7 +187,7 @@
   }
 
   function loadNotes() {
-    database.ref('cashierNotes').once('value')
+    database.ref('8H/cashierNotes').once('value')
       .then(snapshot => {
         const notes = snapshot.val();
         if (notes) {
@@ -245,7 +245,7 @@
   }
 
   function addToCart(productId) {
-    const productRef = database.ref("products/" + productId);
+    const productRef = database.ref("8H/products/" + productId);
     productRef.once("value")
       .then(snapshot => {
         if (snapshot.exists()) {
@@ -358,7 +358,7 @@
     localStorage.setItem('products', JSON.stringify(products)); // Update localStorage
     // Save to Firebase
     const productId = Date.now(); // unique ID
-    firebase.database().ref('products/' + productId).set({
+    firebase.database().ref('8H/products/' + productId).set({
       name: name,
       price: parseFloat(price),
       image: image
