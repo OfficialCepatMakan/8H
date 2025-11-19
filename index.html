@@ -16,7 +16,7 @@
       font-family: 'Helvetica', Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #0a0a0a;
+      background: #121212;
       color: #e5e5e5;
     }
 
@@ -27,20 +27,33 @@
       font-family: 'Roboto', sans-serif;
     }
 
-    header {
-      background: linear-gradient(45deg, #c2410c 0%, #f97316 70%, #f97316 100%);
-      color: #fff;
-      padding: 1.5em;
-      text-align: center;
-      font-size: 1.5em;
-      font-weight: bold;
-      letter-spacing: 1px;
+    .header {
+      background: #1e1e1e;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-bottom: 1px solid #2a2a2a;
+    
+      position: fixed;   /* <— fixed instead of sticky */
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10000;
+    
+      height: 64px;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent */
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: 15px;
+      margin-top: 5px;
     }
 
     footer {
-      background: linear-gradient(45deg, #c2410c 0%, #f97316 50%, #f97316 100%);
-      color: #fff;
-      padding: 1.5em;
+      padding: 1em;
       text-align: center;
       font-size: 0.8em;
       font-weight: bold;
@@ -52,7 +65,7 @@
     }
 
     main {
-      padding: 2em;
+      padding: 1.5em;
       max-width: 100%;
       margin: auto;
     }
@@ -72,7 +85,6 @@
     .product, .cart-item {
       background: #1a1a1a;
       border-radius: 10px;
-      border: 1px solid #f97316;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       padding: 1em;
       flex: 1 1 200px;
@@ -80,7 +92,17 @@
       color: #e5e5e5;
     }
 
-    .product{
+    .admin-product {
+      background: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 1em;
+      flex: 1 1 200px;
+      transition: transform 0.2s ease;
+      color: #e5e5e5;
+    }
+
+    .product {
       max-width: 250px;
     }
 
@@ -95,7 +117,6 @@
       background: #1a1a1a;
       border-radius: 8px;
       padding: 16px;
-      border: 1px solid #f97316;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       display: flex;
       flex-direction: column;
@@ -200,9 +221,12 @@
     .admin-panel {
       display: none;
       position: fixed;
-      top: 0; right: 0;
+      top: 25px;
+      right: 0;
       width: 400px; height: 100%;
-      background: #1a1a1a;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent */
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
       color: #e5e5e5;
       padding: 2em;
       border-left: 2px solid #f97316;
@@ -232,7 +256,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid #f97316;
       padding: 1em;
       border-radius: 6px;
       flex: 1;
@@ -278,7 +301,6 @@
       flex-direction: column;
       align-items: flex-start;
       background: #1a1a1a;
-      border: 1px solid #f97316;
       border-radius: 8px;
       padding: 16px;
       max-width: 360px;
@@ -363,15 +385,16 @@
   </style>
 </head>
 <body>
-<header>
-  <h1>
-    <span class="brand-name">Cashier Panel</span> 
-  </h1>
+<header class="header">
+  <div class="logo-section">
+    <img src="Logo_text.png" alt="Cepatmakan text" style="width: 150px;">
+  </div>
 </header>
 
 
 
 <main>
+  <p>-</p>
   <p>Currency: <span id="currencySymbol">Rp</span></p>
 
   <section>
@@ -455,8 +478,7 @@
 </div>
 <pre id="cartTextSummary" style="margin-top: 30px; white-space: pre-wrap;"></pre>
 <footer>
-  <p>© 2025 Project makassar. All rights reserved.</p>
-  <p><a href="mailto:ilikepython123@gmail.com" style="color:#fff; padding: 10px;">Contact Support</a></p>
+  <p>© 2025 Cepatmakan. All rights reserved.</p>
 </footer>
 <script src="firebase-config.js"></script>
 <script src="Script.js"></script>

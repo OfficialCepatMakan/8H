@@ -140,7 +140,7 @@
           Object.keys(products).forEach((key, i) => {
             const p = products[key]; // Access product data by its key
             const productDiv = document.createElement('div');
-            productDiv.className = 'product';
+            productDiv.className = 'admin-product';
             productDiv.innerHTML = `
               <h4>${p.name}</h4>
               <p>Price: Rp ${p.price}</p>
